@@ -20,7 +20,11 @@
                 <td>{{ $user->id }}</td>
                 <td>{{ $user->name  }}</td>
                 <td>{{ $user->email }}</td>
-                <td>{{ $user->role->nickname }}</td>
+                <td>
+                    @foreach($user->roles as $role)
+                        {{ $role->nickname }}
+                    @endforeach
+                </td>
                 <td>{{ $user->created_at }}</td>
 
                 <td>

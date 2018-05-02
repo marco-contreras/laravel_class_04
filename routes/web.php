@@ -23,3 +23,37 @@ Route::resource('contacts', 'ContactsController')->middleware('auth');
 Route::resource('users', 'UsersController')->middleware(['auth', 'roles:admin,moderator']);
 
 Route::get('/', ['as' => 'home', 'uses' => 'MiniPagesController@handleHome']);
+
+Route::get('super', function (){
+    \App\Role::create([
+        'name' => 'admin',
+        'nickname' => 'Administrator',
+        'description' => 'Super administrator'
+    ]);
+
+    \App\Role::create([
+        'name' => 'moderator',
+        'nickname' => 'Moderator',
+        'description' => 'Site moderator'
+    ]);
+
+    \App\Role::create([
+        'name' => 'client',
+        'nickname' => 'Client',
+        'description' => 'Site client'
+    ]);
+
+    \App\User::create([
+        'name' => 'Marco Contreras',
+        'email' => 'marco.contreras.he@gmail.com',
+        'password' => bcrypt('123')
+    ]);
+
+    \App\User::create([
+        'name' => 'Jenifer Vizcarra',
+        'email' => 'jeeny.viz@gmail.com',
+        'password' => bcrypt('123')
+    ]);
+
+    echo 'done';
+});

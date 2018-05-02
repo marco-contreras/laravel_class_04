@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id'
+        'name', 'email', 'password'//, 'role_id'
     ];
 
     /**
@@ -29,9 +29,17 @@ class User extends Authenticatable
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     *
+     * public function role(){
+     * return $this->belongsTo(Role::class);
+     * }*/
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function role(){
-        return $this->belongsTo(Role::class);
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'assigned_roles'); //This second name is because the table name is not role_user
     }
 
     /**
@@ -40,6 +48,12 @@ class User extends Authenticatable
      */
     public function hasRoles(array $roles)
     {
-        return in_array($this->role->name, $roles);
+        foreach ($this->roles as $role) {
+            if (in_array($role->name, $roles)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
