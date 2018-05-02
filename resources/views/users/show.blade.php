@@ -7,7 +7,7 @@
     <p><b>Id: </b>{{ $user->id }}</p>
     <p><b>Nombre: </b>{{ $user->name }}</p>
     <p><b>Correo: </b>{{ $user->email }}</p>
-    <p><b>Rol: </b>{{ $user->role }}</p>
+    <p><b>Rol: </b>{{ $user->role->nickname }}</p>
     <p><b>Creacion: </b>{{ $user->created_at }}</p>
 
 

@@ -16,7 +16,7 @@
             <div cl ass="form-group">
                 <label for="password">Contraseña</label>
                 <input type="password" class="form-control" name="password" placeholder="Password">
-            </div>
+            </div><br>
 
             <button type="submit" class="btn btn-primary">Iniciar</button>
         </form>

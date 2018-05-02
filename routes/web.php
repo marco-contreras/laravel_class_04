@@ -10,6 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('role', function (){
+    return \App\Role::with('user')->get();
+});
+
 
 Route::get('login', 'Auth\LoginController@showLoginForm');
 Route::post('login', ['as' => 'login', 'uses' => 'Auth\LoginController@login']);

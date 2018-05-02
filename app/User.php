@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role'
+        'name', 'email', 'password', 'role_id'
     ];
 
     /**
@@ -28,11 +28,18 @@ class User extends Authenticatable
     ];
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
+
+    /**
      * @param $roles
      * @return bool
      */
     public function hasRoles(array $roles)
     {
-        return in_array($this->role, $roles);
+        return in_array($this->role->name, $roles);
     }
 }

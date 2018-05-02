@@ -17,9 +17,9 @@
             <input class="form-control" type="email" name="email" value="{{ $user->email }}">
         </label><br>
 
-        <label for="role">
+        <label for="role_id">
             Role:
-            <input class="form-control" type="text" name="role" value="{{ $user->role }}">
+            <input class="form-control" type="number" name="role_id" value="{{ $user->role->id }}">
         </label><br><br>
 
         <input class="btn btn-primary" type="submit" value="Actualizar">
