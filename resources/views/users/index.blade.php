@@ -3,6 +3,12 @@
 @section('content')
     <h1>Usuarios</h1>
 
+    @if(session()->has('info'))
+        <div class="alert alert-success" role="alert">
+            {{ session('info') }}
+        </div>
+    @endif
+
     <table class="table">
         <thead>
         <tr>

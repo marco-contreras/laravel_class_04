@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
 use App\User;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('roles:admin', ['except' => ['edit']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -72,17 +79,15 @@ class UsersController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param UpdateUserRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
         User::findOrFail($id)->update($request->all());
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('info', 'Usuario actualizado correctamente.');
     }
 
     /**

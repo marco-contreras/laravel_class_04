@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('role', function (){
+Route::get('role', function () {
     return \App\Role::with('user')->get();
 });
 
@@ -20,11 +20,11 @@ Route::post('login', ['as' => 'login', 'uses' => 'Auth\LoginController@login']);
 Route::get('logout', 'Auth\LoginController@logout');
 
 Route::resource('contacts', 'ContactsController')->middleware('auth');
-Route::resource('users', 'UsersController')->middleware(['auth', 'roles:admin,moderator']);
+Route::resource('users', 'UsersController');
 
 Route::get('/', ['as' => 'home', 'uses' => 'MiniPagesController@handleHome']);
 
-Route::get('super', function (){
+Route::get('super', function () {
     \App\Role::create([
         'name' => 'admin',
         'nickname' => 'Administrator',
