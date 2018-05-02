@@ -18,16 +18,20 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
+                @if(auth()->check())
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contacts">Contactos</a>
+                    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
+                    @if(auth()->user()->hasRoles(['admin', 'moderator']))
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users">Usuarios</a>
+                        </li>
+                    @endif
+                @endif
             </ul>
 
             <ul class="navbar-nav">

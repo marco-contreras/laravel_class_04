@@ -13,7 +13,7 @@
                 <input type="email" class="form-control" name="email" aria-describedby="emailHelp"
                        placeholder="Enter email">
             </div>
-            <div class="form-group">
+            <div cl ass="form-group">
                 <label for="password">Contraseña</label>
                 <input type="password" class="form-control" name="password" placeholder="Password">
             </div>
