@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\Events\MessageWasReceived;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -42,9 +43,7 @@ class ContactsController extends Controller
         $id = Contact::create($request->all())->id;
         $contact = Contact::findOrFail($id);
 
-        Mail::send('emails.contact', compact('contact'), function ($message) use ($contact){
-            $message->to($contact->email, $contact->name)->subject('Fuiste agregado a la agenda');
-        });
+        event(new MessageWasReceived($contact));
 
         /* Service DATA */
         config('services.newservice.key');
