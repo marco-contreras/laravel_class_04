@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contact;
 use http\Env\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactsController extends Controller
 {
@@ -38,7 +39,12 @@ class ContactsController extends Controller
      */
     public function store(Request $request)
     {
-        Contact::create($request->all());
+        $id = Contact::create($request->all())->id;
+        $contact = Contact::findOrFail($id);
+
+        Mail::send('emails.contact', compact('contact'), function ($message) use ($contact){
+            $message->to($contact->email, $contact->name)->subject('Fuiste agregado a la agenda');
+        });
 
         return redirect()->route('contacts.index');
     }
