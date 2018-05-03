@@ -35,4 +35,9 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'newservice' => [
+        'key' => env('NEW_SERVICE_KEY'),
+        'value' => env('NEW_SERVICE_VALUE'),
+    ],
+
 ];

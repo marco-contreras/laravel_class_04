@@ -46,6 +46,11 @@ class ContactsController extends Controller
             $message->to($contact->email, $contact->name)->subject('Fuiste agregado a la agenda');
         });
 
+        /* Service DATA */
+        config('services.newservice.key');
+        env('NEW_SERVICE_KEY');
+        /**/
+
         return redirect()->route('contacts.index');
     }
 
