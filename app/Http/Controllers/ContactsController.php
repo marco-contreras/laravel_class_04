@@ -40,10 +40,21 @@ class ContactsController extends Controller
      */
     public function store(Request $request)
     {
-        $id = Contact::create($request->all())->id;
-        $contact = Contact::findOrFail($id);
+        $contactResult = Contact::create($request->all());
+        $contact = Contact::findOrFail($contactResult->id);
 
         event(new MessageWasReceived($contact));
+
+        //Guardar el Id de un usuario en un mensaje que ya fue guardado con anterioridad
+        //Esto es para cuando un usuario puede o no estar autenticado
+        auth()->user()->contacts()->save($contact);
+
+        //We can use this line whe all the users are autenticated
+        //auth()->user()->contacts()->create($request->all());
+
+        //We can do it this too
+        //$contact->user_id = auth()->id();
+        //$contact->save();
 
         /* Service DATA */
         config('services.newservice.key');

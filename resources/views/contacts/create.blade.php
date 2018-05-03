@@ -6,35 +6,7 @@
     <form method="POST" action="{{ route('contacts.store') }}">
         {{ csrf_field() }}
 
-        <label for="name">
-            Name:
-            <input class="form-control" type="text" name="name">
-        </label><br>
-
-        <label for="lastName">
-            Last Name:
-            <input class="form-control" type="text" name="last_name">
-        </label><br>
-
-        <label for="nickname">
-            Nickname:
-            <input class="form-control" type="text" name="nickname">
-        </label><br>
-
-        <label for="ralationship">
-            Relationship:
-            <input class="form-control" type="text" name="relationship">
-        </label><br>
-
-        <label for="cellphone">
-            Cellphone:
-            <input class="form-control" type="number" name="cellphone">
-        </label><br>
-
-        <label for="email">
-            Email:
-            <input class="form-control" type="email" name="email">
-        </label><br><br>
+        @include('contacts.form')
 
         <input class="btn btn-primary" type="submit" value="Crear">
     </form>

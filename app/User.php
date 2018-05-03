@@ -43,6 +43,13 @@ class User extends Authenticatable
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function contacts(){
+        return $this->hasMany(Contact::class);
+    }
+
+    /**
      * @param $roles
      * @return bool
      */
@@ -51,6 +58,9 @@ class User extends Authenticatable
         return (bool) $this->roles->pluck('name')->intersect($roles)->count();
     }
 
+    /**
+     * @return bool
+     */
     public function isAdmin(){
         return $this->hasRoles(['admin']);
     }
